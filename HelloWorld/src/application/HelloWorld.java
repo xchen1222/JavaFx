@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
  
+
 public class HelloWorld extends Application { //JavaFX application defines the user interface container by means of a stage and a scene. 
     public static void main(String[] args) {
         launch(args);
@@ -19,11 +20,13 @@ public class HelloWorld extends Application { //JavaFX application defines the u
         Button btn = new Button();
         btn.setText("Say 'Hello World'");
         btn.setOnAction(new EventHandler<ActionEvent>() {
- 
+        	int x = 0 ; 
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("Hello World!");
+                x++;
+            	System.out.println("Hello World!" + " Pressed " + x + " times");
             }
+           
         });
         
         
