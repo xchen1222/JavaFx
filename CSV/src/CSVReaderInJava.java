@@ -13,14 +13,18 @@ import java.util.List;
 public class CSVReaderInJava {
 
 	public static void main(String[] args) {
-		//List<Book> books = readBooksFromCSV()
+		List<Book> books = readBooksFromCSV("");
+		
+		for (Book b : books) {
+			System.out.println(b) ;
+		}
 	}
 	
 	private static List<Book> readBooksFromCSV(String fileName){
 		List<Book> books = new ArrayList<>() ; 
 		Path pathtoFile = Paths.get(fileName) ; 
 	
-	try(BufferedReader br = Files.newBufferedReader(pathToFile,
+	try(BufferedReader br = Files.newBufferedReader(pathtoFile,
 			StandardCharsets.US_ASCII)) { 
 		String line = br.readLine() ; 
 		
@@ -36,11 +40,69 @@ public class CSVReaderInJava {
 			
 		}
 	} 
+	catch (IOException ioe) {
+		ioe.printStackTrace(); 
+	}
 	
+	return books; 
 	
 	}
 	
+	private static Book createBook(String[] metadata) {
+		String name = metadata[0] ; 
+		int price = Integer.parseInt(metadata[1]) ; 
+		String author = metadata[2] ; 
+		
+		return new Book(name,price,author) ;
+	}
+
+public class Book {
+
 	
+	private String name ;
+	private int price; 
+	private String author;
+	
+	public Book(String name, int price, String author) {
+		this.name = name; 
+		this.price = price; 
+		this.author = author; 
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public String getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(String author) {
+		this.author = author;
+	}
+	
+	@Override
+	public String toString() {
+		return name + " " + price + " " + author + " " ;  
+	}
+	
+	
+	
+	
+}
+
 	
 	
 	
